@@ -1,0 +1,14 @@
+{
+    "name": "mikefunk/query-stringer",
+    "description": "A simple query string helper to modify, get, and replace query strings.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Funk",
+            "email": "mike@mikefunk.com"
+        }
+    ],
+    "require": {
+
+    }
+}
