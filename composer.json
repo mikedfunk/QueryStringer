@@ -8,7 +8,7 @@
             "email": "mike@mikefunk.com"
         }
     ],
-    "require": {
-
+    "require-dev": {
+        "mockery/mockery": "dev-master"
     }
 }
