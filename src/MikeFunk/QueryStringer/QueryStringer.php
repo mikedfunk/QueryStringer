@@ -41,10 +41,16 @@ class QueryStringer
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($query_string = '')
     {
-        // set the current parsed query string
-        $this->query_array = parse_str($_SERVER['QUERY_STRING'], $query_array);
+        // set the current parsed query string to either the server one or
+        // the one passed in
+        if ($query_string == '') {
+            parse_str($_SERVER['QUERY_STRING'], $query_array);
+        } else {
+            parse_str($query_string, $query_array);
+        }
+        $this->query_array = $query_array;
     }
 
     /**
@@ -58,9 +64,9 @@ class QueryStringer
         $query_array = array_merge($this->query_array, $this->include);
 
         // remove the stuff to be removed
-        foreach ($this->exclude as $key => $value) {
-            if (isset($query_array[$key])) {
-                unset($query_array[$key]);
+        foreach ($this->exclude as $exclude) {
+            if (isset($query_array[$exclude])) {
+                unset($query_array[$exclude]);
             }
         }
 
