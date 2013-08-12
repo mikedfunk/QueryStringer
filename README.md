@@ -5,10 +5,19 @@ A simple query string helper that will let you:
 
 * get a query string with key/values added
 * get a query string with keys removed (blacklist)
-* get only a subset of keys (whitelist)
+* get a query string with only a subset of keys (whitelist)
 * combine any of these
-* get a new array instead
 * use the helper to assemble a new query string
+* get the result as an array
+* get the result as a string
+
+## Installation
+
+Add this to your composer.json:
+
+```"mikefunk/query-stringer": "dev-master"```
+
+then run ```composer update``` and you're ready to use query stringer!
 
 ## Usage
 
