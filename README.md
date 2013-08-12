@@ -30,3 +30,4 @@ $query_stringer->replaceWith('master' => 'splinter')->get();
 
 // returns ?michael=jackson
 $query_stringer->only(['michael'])->get();
+```
