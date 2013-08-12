@@ -12,21 +12,6 @@ namespace MikeFunk\QueryStringer;
  */
 class QueryStringer
 {
-    /**
-     * include these extra key/value pairs in the query string
-     *
-     * @var array
-     * @access protected
-     */
-    protected $include = array();
-
-    /**
-     * exclude these key/value pairs from the query string
-     *
-     * @var array
-     * @access protected
-     */
-    protected $exclude = array();
 
     /**
      * the current query string parsed to an array
@@ -60,19 +45,10 @@ class QueryStringer
      */
     public function getArray()
     {
-        // add the stuff to be added
-        $query_array = array_merge($this->query_array, $this->include);
-
-        // remove the stuff to be removed
-        foreach ($this->exclude as $exclude) {
-            if (isset($query_array[$exclude])) {
-                unset($query_array[$exclude]);
-            }
-        }
-
-        // clear the arrays and get the result
-        $this->include = $this->exclude = array();
-        return $query_array;
+        // clear the array and get the result
+        $return = $this->query_array;
+        $this->query_array = array();
+        return $return;
     }
 
     /**
@@ -84,7 +60,6 @@ class QueryStringer
     {
         // get the assembled array and clear the temp arrays
         $query_array = $this->getArray();
-        $this->include = $this->exclude = array();
 
         // put a ? in front if there is anything in the string, return it
         $prefix = !empty($query_array) ? '?' : '';
@@ -99,7 +74,8 @@ class QueryStringer
      */
     public function with(array $include)
     {
-        $this->include = array_merge($this->include, $include);
+        // add the stuff to be added
+        $this->query_array = array_merge($this->query_array, $include);
         return $this;
     }
 
@@ -122,7 +98,35 @@ class QueryStringer
      */
     public function without(array $exclude)
     {
-        $this->exclude = array_merge($this->exclude, $exclude);
+        // remove the stuff to be removed
+        foreach ($exclude as $item) {
+            if (isset($this->query_array[$item])) {
+                unset($this->query_array[$item]);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * get rid of any keys in the stored array that don't match these
+     *
+     * @param array $only
+     * @return QueryStringer
+     */
+    public function only(array $only)
+    {
+        // reset exclude and include arrays
+        $this->exclude = $this->include = array();
+
+        // create new array from keys sent and values in query_array
+        $output = array();
+        foreach($only as $key)
+        {
+            $output[$key] = $this->query_array[$key];
+        }
+
+        // set it, return object for chaining
+        $this->query_array = $output;
         return $this;
     }
 }

@@ -99,4 +99,16 @@ class QueryStringerTest extends \PHPUnit_Framework_TestCase
         $actual    = $this->query_stringer->replaceWith($new_array)->get();
         $this->assertEquals($expected, $actual);
     }
+
+    /**
+     * testOnly
+     *
+     * @return void
+     */
+    public function testOnly()
+    {
+        $expected = '?one=1';
+        $actual = $this->query_stringer->only(array('one'))->get();
+        $this->assertEquals($expected, $actual);
+    }
 }

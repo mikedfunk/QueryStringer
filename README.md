@@ -4,9 +4,10 @@ QueryStringer
 A simple query string helper that will let you:
 
 * get a query string with key/values added
-* get a query string with keys removed
-* combine the two
-* get an array instead
+* get a query string with keys removed (blacklist)
+* get only a subset of keys (whitelist)
+* combine any of these
+* get a new array instead
 * use the helper to assemble a new query string
 
 ## Usage
@@ -26,3 +27,6 @@ $query_stringer->getArray();
 
 // returns ?master=splinter
 $query_stringer->replaceWith('master' => 'splinter')->get();
+
+// returns ?michael=jackson
+$query_stringer->only(['michael'])->get();
