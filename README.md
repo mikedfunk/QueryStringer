@@ -33,4 +33,5 @@ $query_stringer->only(['michael'])->get();
 
 // if the current document's query string is not set, returns an empty string.
 // no question mark.
+$query_stringer->get();
 ```
