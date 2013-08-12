@@ -30,7 +30,7 @@ class QueryStringer
     {
         // set the current parsed query string to either the server one or
         // the one passed in
-        if ($query_string == '') {
+        if ($query_string == '' && isset($_SERVER['QUERY_STRING'])) {
             parse_str($_SERVER['QUERY_STRING'], $query_array);
         } else {
             parse_str($query_string, $query_array);
@@ -120,8 +120,7 @@ class QueryStringer
 
         // create new array from keys sent and values in query_array
         $output = array();
-        foreach($only as $key)
-        {
+        foreach ($only as $key) {
             $output[$key] = $this->query_array[$key];
         }
 
