@@ -14,7 +14,7 @@ A simple query string helper that will let you:
 
 ```php
 // assume the current document's query string is britney=spears&michael=jackson
-$query_stringer = new QueryStringer;
+$query_stringer = new MikeFunk\QueryStringer;
 
 // returns ?michael=jackson
 $query_stringer->without(['britney'])->get();
