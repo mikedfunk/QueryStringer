@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/mikedfunk/QueryStringer.png?branch=master)](http://travis-ci.org/mikedfunk/QueryStringer)
+[![Build Status](https://travis-ci.org/mikedfunk/QueryStringer.png?branch=master)](https://travis-ci.org/mikedfunk/QueryStringer) [![Coverage Status](https://coveralls.io/repos/mikedfunk/QueryStringer/badge.png?branch=master)](https://coveralls.io/r/mikedfunk/QueryStringer)
 
 QueryStringer
 =============
